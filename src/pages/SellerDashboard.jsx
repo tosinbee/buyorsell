@@ -35,24 +35,18 @@ const SellerDashboard = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handle form submission
     const { imageFile, ...productData } = formData;
-  
-    // Example: Upload image file to server using FormData
-    const formDataToSend = new FormData(); // Rename formData to avoid conflict
+    const formDataToSend = new FormData(); 
     formDataToSend.append('image', imageFile);
-  
-    // Example: Fetch API to send form data to server
     fetch('/api/uploadImage', {
       method: 'POST',
       body: formDataToSend,
     })
       .then((response) => response.json())
       .then((data) => {
-        // After image upload, add product with image URL to products array
         const addNewProduct = {
           ...productData,
-          imgUrl: data.imageUrl, // Assuming server responds with image URL
+          imgUrl: data.imageUrl, 
         };
         addProduct(addNewProduct);
       })
